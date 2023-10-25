@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://justontime-f6fi.onrender.com/api'
+const API_URL = 'http://localhost:3000/api'
 
 //resend code to the user
 const verifyEmail = async (email, token) => {

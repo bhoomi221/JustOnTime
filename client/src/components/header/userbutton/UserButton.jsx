@@ -1,10 +1,10 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {FaUserCircle} from 'react-icons/fa'
 import Dropdown from 'react-bootstrap/Dropdown'
 import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+
 import './userbutton.css'
 import {useNavigate} from "react-router-dom";
 import {logoutUser, reset} from "../../../services/auth/authSlice";
@@ -42,10 +42,10 @@ function UserButton() {
           <Dropdown id="user-button" className="ms-auto me-4 rounded-pill border border-dark shadow grow">
           <Dropdown.Toggle as={CustomToggle} variant="outline-dark"/>
           <Dropdown.Menu className='me-1 mt-2 rounded-lg'>
-              {!user && <Dropdown.Item><Link to="/login"> Login</Link></Dropdown.Item>}
-              {!user && <Dropdown.Item><Link to="/signup"> Register</Link></Dropdown.Item>}
-              {user && <Dropdown.Item href="/personal-info">My Account</Dropdown.Item>}
-              {user && user.userType === "Organizer" && <Dropdown.Item href="/organizer/">My Events</Dropdown.Item>}
+              {!user && <Dropdown.Item> <Link to="/login"> Login</Link></Dropdown.Item>}
+              {!user && <Dropdown.Item ><Link to="/signup"> Register</Link></Dropdown.Item>}
+              {user && <Dropdown.Item ><Link to="/personal-info"> My Account</Link></Dropdown.Item>}
+              {user && user.userType === "Organizer" && <Dropdown.Item ><Link to="/organizer/"> My Events</Link></Dropdown.Item>}
               {user && <Dropdown.Divider />}
               {user && <Dropdown.Item as="button" onClick={onLogout}>Logout</Dropdown.Item>}
           </Dropdown.Menu>

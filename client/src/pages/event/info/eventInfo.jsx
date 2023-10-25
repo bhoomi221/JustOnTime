@@ -8,6 +8,7 @@ import BidForm from '../../../components/forms/makebid/BidForm';
 import BidHistoryPanel from '../../../components/event/infopage/bidHistory';
 import moment from "moment";
 import {toast} from "react-toastify";
+import {Link} from 'react-router-dom'
 
 function EventInfo() {
 
@@ -160,7 +161,7 @@ function EventInfo() {
                                 </div>
                                 <div id="organizer-card" className='card my-5'>
                                     <div className="card-body">
-                                        <div className='h5 m-3'>Sold by:  <a href="organizerPage" target="_blank" className='text-primary'>{event.organizerName}</a></div>
+                                        <div className='h5 m-3'>Sold by:  <Link to="organizerPage" target="_blank" className='text-primary'>{event.organizerName}</Link></div>
                                     </div>
                                 </div>
                             </div> 

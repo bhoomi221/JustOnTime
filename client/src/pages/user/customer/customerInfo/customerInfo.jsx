@@ -10,7 +10,7 @@ import {BsShieldFillCheck} from "react-icons/bs"
 import {AiFillHome} from "react-icons/ai";
 import { HiX, HiCheck} from "react-icons/hi"
 import {InputValidator} from "../../../../util/validation/InputValidator"
-
+import {Link} from 'react-router-dom'
 import './customerInfo.css'
 
 
@@ -375,7 +375,7 @@ function CustomerInfo() {
     if(user === null){
         return (
             <div  className="d-flex justify-content-center align-items-center h2 mt-5">
-                <p> Please  <a className="text-danger" href="/login"> login</a> or <a className="text-danger" href="/signup"> register.</a> </p>
+                <p> Please  <Link className="text-danger" to="/login"> login</Link> or <Link className="text-danger" to="/signup"> register.</Link> </p>
             </div>
         )
     } else {

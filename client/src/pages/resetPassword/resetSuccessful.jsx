@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {BsShieldCheck } from "react-icons/bs"
 import {useParams} from 'react-router-dom'
-
+import {Link} from 'react-router-dom'
 
 function ResetSuccessful() {
     const {changed} = useParams(); 
@@ -13,7 +13,7 @@ function ResetSuccessful() {
               <div className="text-center my-3"> <BsShieldCheck color="green" size={150}/></div>
                <p className="display-4"><strong> {changed.charAt(0).toUpperCase() + changed.slice(1)} Changed!</strong> </p>
                <p> Your {changed.charAt(0).toUpperCase() + changed.slice(1)} was successfully changed.  </p>
-               <a className="text-danger" href="/login"> Login</a> 
+               <Link className="text-danger" to="/login"> Login</Link> 
            </div>
           )  
         } else {

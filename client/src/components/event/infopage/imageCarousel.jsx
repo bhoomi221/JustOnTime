@@ -39,7 +39,7 @@ function ImageSlider(props) {
 
     function createImagePanels() {
         return props.images.map(image => {
-            return <img src={`https://justontime.onrender.com/${image.substring(3)}`} key={image} className="event-image"/>
+            return <img src={`http://localhost:3000/${image.substring(3)}`} key={image} className="event-image"/>
         })
     }
 

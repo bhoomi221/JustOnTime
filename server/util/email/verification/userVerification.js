@@ -3,7 +3,7 @@ import crypto from "crypto";
 import { clientError, serverError, successWithData } from "../../http/httpResponse.js";
 import nodemailer from "nodemailer";
 
-const host = 'https://justontime.onrender.com'
+const host = 'http://localhost:3005'
 function transporter() {
     return nodemailer.createTransport({
         host: "smtp.mailtrap.io",

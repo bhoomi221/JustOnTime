@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { render } from 'react-dom';
+import {HashRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom"
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from './pages/user/login.jsx'
 import Signup from "./pages/user/signup.jsx";
 import SendResetLink from "./pages/resetPassword/sendResetLink"
@@ -33,68 +32,68 @@ import {ToastContainer} from "react-toastify";
 export default function App() {
   return (
   <>
-      <Routes>
-        <Route exact path="/" element={<CustomerHome />} />
-        <Route exact path="/personal-info/" element={<CustomerInfo />} />
-        <Route exact path="login/" element={<Login />} />
-        <Route exact path="/signup/" element={<Signup />} />
-        <Route path="dashboard" element={<CustomerHome />} />
-        <Route path="reset-link" >
-          <Route path=":changed" element={<SendResetLink />}/>    
-        </Route>
-        <Route path="reset-successful" >
-          <Route path=":changed" element={<ResetSuccessful />}/>    
-        </Route>
-        <Route path="resetpassword" >              
-          <Route path=":token" >
-            <Route path=":id" element={<ResetPassword />} />
-          </Route>
-        </Route>
-        <Route path="resetemail" >              
-              <Route path=":token" >
-                <Route path=":id" element={<ResetEmail />} />
-              </Route>
-        </Route>
-        <Route path="event">
-          <Route path=":eventId" element={<EventInfo/>} />
-        </Route>
-        <Route path="admin" element={<AdminDashboard />} />
-        <Route path="customer">
-          <Route path="verification-required" element={<CustomerVerificationRequired />} />
-          <Route path="verifyemail">              
-            <Route path=":email">
-              <Route path=":token" element={<CustomerVerifyEmail />} />
+    <HashRouter>
+        <Header />
+        <Routes>
+            <Route path="/" element={<CustomerHome />} />
+            <Route path="personal-info" element={<CustomerInfo />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="dashboard" element={<CustomerHome />} />
+            <Route path="reset-link" >
+              <Route path=":changed" element={<SendResetLink />}/>    
             </Route>
-          </Route>
-        </Route>
-        <Route path="organizer">
-            <Route path = "" element={<OrganizerMain/>}/>
-            <Route path="signup" element={<OrganizerSignup/>} />
-            <Route path="createEvent" element={<CreateEvent/>} />
-        </Route>
-        <Route path = "search"  element={<Search/>}/>
-      </Routes>
+            <Route path="reset-successful" >
+              <Route path=":changed" element={<ResetSuccessful />}/>    
+            </Route>
+            <Route path="resetpassword" >              
+              <Route path=":token" >
+                <Route path=":id" element={<ResetPassword />} />
+              </Route>
+            </Route>
+            <Route path="resetemail" >              
+                  <Route path=":token" >
+                    <Route path=":id" element={<ResetEmail />} />
+                  </Route>
+            </Route>
+            <Route path="event">
+              <Route path=":eventId" element={<EventInfo/>} />
+            </Route>
+            <Route path="admin" element={<AdminDashboard />} />
+            <Route path="customer">
+              <Route path="verification-required" element={<CustomerVerificationRequired />} />
+              <Route path="verifyemail">              
+                <Route path=":email">
+                  <Route path=":token" element={<CustomerVerifyEmail />} />
+                </Route>
+              </Route>
+            </Route>
+            <Route path="organizer">
+                <Route path = "" element={<OrganizerMain/>}/>
+                <Route path="signup" element={<OrganizerSignup/>} />
+                <Route path="createEvent" element={<CreateEvent/>} />
+            </Route>
+            <Route path = "search"  element={<Search/>}/>
+        </Routes>
+    </HashRouter>
   </>
   );
 }
 
-//const root = ReactDOM.createRoot(document.getElementById('root'));
-render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <Provider store={store}>
-    <HashRouter>
-      <Header />
-      <ToastContainer
-            position="bottom-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={true}
-            pauseOnFocusLoss
-            pauseOnHover
-      />
-      <App />
-    </HashRouter>
-     
-  </Provider>,document.getElementById('root') );
+    <App />
+    <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        pauseOnFocusLoss
+        pauseOnHover
+    />
+  </Provider>
+);
 
 reportWebVitals();
 

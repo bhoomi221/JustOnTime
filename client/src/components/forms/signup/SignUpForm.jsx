@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link } from 'react-router-dom';
 import './signupform.css'
 import {HiCursorClick} from 'react-icons/hi'
 import InputField from '../input/InputField'
@@ -68,7 +68,7 @@ function SignUpForm(props) {
                         />
                         <p className="text-center w-100 mt-3 text-danger">{props.error.formError}</p>
                         <button type="submit" id="submit-button" className="mt-3 shadow-lg rounded-pill btn btn-block w-100 btn-danger">SIGN UP</button>
-                        <p className="text-center w-100 mt-3">Already have an account ? <a id="login-link" className="text-danger" href="/login">Log In Now</a></p>
+                        <p className="text-center w-100 mt-3">Already have an account ? <Link id="login-link" className="text-danger" to="/login">Log In Now</Link></p>
                         <hr data-content="and" className="mt-4 hr-text"/>
 
                         <GoogleButton

@@ -3,16 +3,15 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import UserButton from './userbutton/UserButton'
 import Search from './search/search'
-
-import logo from '../../logo_cropped.png'
 import {Link} from 'react-router-dom';
+import logo from '../../logo_cropped.png'
 
 import './header.css'
 
 function Header() {
     return (
         <Navbar bg="light" expand="lg" className='p-2'>
-            <Link to ="/">
+            <a href="/">
                 <Navbar.Brand className='logo ms-4 link-light'>
                     <img
                     src={logo}
@@ -22,10 +21,10 @@ function Header() {
                     alt='JustOnTime'
                     />
                 </Navbar.Brand>
-            </Link>
+            </a>
             <Search/>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <a className="position-absolute end-50 me-4 pe-4" href="/organizer/signup">Interested In Selling?</a>
+            <Link className="position-absolute end-50 me-4 pe-4" to="/organizer/signup">Interested In Selling?</Link>
             <Navbar.Collapse id="basic-navbar-nav">
             <UserButton />
             </Navbar.Collapse>

@@ -2,7 +2,7 @@ import React from 'react'
 
 import './loginform.css'
 import logo from "../../../logo_cropped.png";
-
+import {Link} from 'react-router-dom'
 import {FaUserAlt, FaLock} from 'react-icons/fa'
 import InputField from "../input/InputField";
 import GoogleButton from 'react-google-button'
@@ -44,8 +44,8 @@ function LoginForm(props) {
                         errorMargin="90%"
                     />
                     <button type="submit" id="submit-button" className="mt-3 shadow-lg rounded-pill btn btn-block w-100 btn-danger">SIGN IN</button>
-                    <p className="text-center w-100 mt-3">Don't have an account yet ? <a id="signup-link" className="text-danger" href="/signup">Sign Up Now</a></p>
-                    <p className="text-center w-100 mt-3"> <a id="signup-link" className="text-danger" href="/reset-link/password">Forgot your password?</a></p>
+                    <p className="text-center w-100 mt-3">Don't have an account yet ? <Link id="signup-link" className="text-danger" to="/signup">Sign Up Now</Link></p>
+                    <p className="text-center w-100 mt-3"> <Link id="signup-link" className="text-danger" to="/reset-link/password">Forgot your password?</Link></p>
                     <hr data-content="and" className="mt-4 hr-text"/>
                     <GoogleButton
                         className="mt-4 w-100"
