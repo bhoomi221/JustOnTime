@@ -14,9 +14,6 @@ import { eventRouter } from './routes/eventRoutes.js'
 dotenv.config();
 
 const app = express();
-const corsOptions = {
-  origin: "https://justontime-f6fi.onrender.com" // frontend URI (ReactJS)
-}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -51,7 +48,6 @@ app.use("/api/user", userRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/event", eventRouter);
 app.use("*", (req, res) => res.status(404).json({ error: "Not found" }));
-
 
 export default app;
 export {sessionParser}

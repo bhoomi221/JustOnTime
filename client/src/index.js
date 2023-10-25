@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { render } from 'react-dom';
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, BrowserRouter } from "react-router-dom"
 import { HashRouter } from "react-router-dom";
 import Login from './pages/user/login.jsx'
 import Signup from "./pages/user/signup.jsx";
@@ -32,12 +33,11 @@ import {ToastContainer} from "react-toastify";
 export default function App() {
   return (
   <>
-    <Header />
-    <Routes>
-        <Route path="/" element={<CustomerHome />} />
-        <Route path="personal-info" element={<CustomerInfo />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+      <Routes>
+        <Route exact path="/" element={<CustomerHome />} />
+        <Route exact path="/personal-info/" element={<CustomerInfo />} />
+        <Route exact path="login/" element={<Login />} />
+        <Route exact path="/signup/" element={<Signup />} />
         <Route path="dashboard" element={<CustomerHome />} />
         <Route path="reset-link" >
           <Route path=":changed" element={<SendResetLink />}/>    
@@ -73,27 +73,28 @@ export default function App() {
             <Route path="createEvent" element={<CreateEvent/>} />
         </Route>
         <Route path = "search"  element={<Search/>}/>
-    </Routes>
+      </Routes>
   </>
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+//const root = ReactDOM.createRoot(document.getElementById('root'));
+render(
   <Provider store={store}>
     <HashRouter>
-      <App />
+      <Header />
       <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={true}
-          pauseOnFocusLoss
-          pauseOnHover
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={true}
+            pauseOnFocusLoss
+            pauseOnHover
       />
+      <App />
     </HashRouter>
-  </Provider>
-);
+     
+  </Provider>,document.getElementById('root') );
 
 reportWebVitals();
 
