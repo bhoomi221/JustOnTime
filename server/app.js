@@ -14,12 +14,10 @@ import { eventRouter } from './routes/eventRoutes.js'
 dotenv.config();
 
 const app = express();
-const corsOptions = {
-  origin: "https://justontime-f6fi.onrender.com" // frontend URI (ReactJS)
-}
+
+app.use(cors({ credentials: true, origin: ["https://justontime-f6fi.onrender.com"], exposedHeaders: ["set-cookie"]  }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
 app.use('/uploads',express.static('../uploads'))
 
 // configure session
