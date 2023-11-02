@@ -6,10 +6,10 @@ import InputField from "../../components/forms/input/InputField";
 import Spinner from "../../components/spinner/Spinner";
 import logo from "../../logo_cropped.png";
 import {logoutUser, reset } from "../../services/auth/authSlice"
-import axios from 'axios'
+import axios from 'axios'; 
+import {api} from '../../api_config';
 
 function ResetPassword() {
-    const API_URL = '/api/';
     const [formError, setFormError] = useState(false);
     const [password, setPassword] = useState(false);
     const [password2, setPassword2] = useState(false);
@@ -25,7 +25,7 @@ function ResetPassword() {
     }
 
     const checkToken = async () => {
-        const valid = await axios.post(API_URL + 'user/checkToken',  {"token": token});
+        const valid = await api.post( 'user/checkToken',  {"token": token});
         return valid;
     }
     useEffect(() => {
@@ -44,13 +44,13 @@ function ResetPassword() {
         } else {
             try {
                 setFormError("");
-                const response = await axios.post(API_URL + 'user/hash', {"id": id, "password": password});
+                const response = await api.post('user/hash', {"id": id, "password": password});
                 logout()
             } catch (error) {
                 setFormError(error.response.data.message);
             } 
             try {
-                const response = await axios.post(API_URL + 'user/send-email', {"id": id, "message": "Password successfully changed!", subject: "JUST ON TIME: Password changed" });
+                const response = await api.post('user/send-email', {"id": id, "message": "Password successfully changed!", subject: "JUST ON TIME: Password changed" });
                 navigate('/reset-successful/password')
             } catch (error) {
                 setFormError(error.response.data.message);

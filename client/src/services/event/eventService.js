@@ -1,17 +1,6 @@
 import axios from 'axios'
 import { EventStatus } from '../admin/verifyEventService';
-
-const API_URL = "https://justontime.onrender.com/api/"
-const api = axios.create({
-    baseURL: API_URL,
-    withCredentials: true // Ensure credentials are sent
-  });
-  
-  api.interceptors.request.use((config) => {
-    config.headers['Content-Type'] = 'application/json';
-    return config;
-  });
-
+import {api} from '../../api_config';
 
 // Get public events
 export const loadEvents = async () => {
@@ -43,7 +32,7 @@ export const loadEvents = async () => {
 
 
 export const loadOrganizerEvents = async (userID) => {
-    const response = await axios.get('/api/event/organizerEvents?id=' + userID);
+    const response = await api.get('/api/event/organizerEvents?id=' + userID);
     if (response.data) {
         const data =  response.data.events.map((event) => {
             return {
@@ -62,7 +51,7 @@ export const loadOrganizerEvents = async (userID) => {
 
 //Get searched events
 export const loadSearchedEvents = async (searchTerm) => {
-    const response = await axios.get(API_URL + `event/search/?searchTerm=${searchTerm}`);
+    const response = await api.get(`event/search/?searchTerm=${searchTerm}`);
     if (response.data) {
         const data =  response.data.map((event) => {
             console.log(event.bidHistory);
@@ -87,7 +76,7 @@ export const loadSearchedEvents = async (searchTerm) => {
 
 //Possibly add organizer information(name)
 export const loadAnEvent = async (id) => {
-    const response = await axios.get(API_URL + `event/getAnEvent?id=${id}`);
+    const response = await api.get( `event/getAnEvent?id=${id}`);
     if (response.data) {
         const event = response.data
         if (event.eventInfo.status !== EventStatus.ONGOING){
@@ -118,7 +107,7 @@ export const loadAnEvent = async (id) => {
 
 export const getEventImage = async(id) => {
     try {
-        const response = await axios.get(API_URL + `event/getImage/?id=${id}`, {
+        const response = await api.get( `event/getImage/?id=${id}`, {
             responseType: "blob"
         });
         return response.data;
@@ -135,7 +124,7 @@ export const addEvent = async (body) => {
         'Content-Type': 'multipart/form-data'
     }
     try {
-        const response = await axios.post(API_URL + `event`, body, {
+        const response = await api.post( `event`, body, {
             headers: headers,
         });
         console.log("success")

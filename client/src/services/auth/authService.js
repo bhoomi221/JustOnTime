@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
+import {api} from '../../api_config';
 
-const API_URL = '/api/'
 
 //Register user
 const registerUser = async (userData) => {
-    const response = await axios.post(API_URL + 'user/register', userData);
+    const response = await api.post('user/register', userData);
     if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
@@ -13,7 +13,7 @@ const registerUser = async (userData) => {
 
 //Register organizer
 const registerOrganizer = async (userData) => {
-    const response = await axios.post(API_URL + "user/registerOrganizer", userData);
+    const response = await api.post("user/registerOrganizer", userData);
     if (response.status === 200) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
@@ -23,7 +23,7 @@ const registerOrganizer = async (userData) => {
 
 //Login user
 const loginUser = async (userData) => {
-    const response = await axios.post(API_URL + 'user/login', userData);
+    const response = await api.post( 'user/login', userData);
     if (response.data) {
         localStorage.setItem('user', JSON.stringify(response.data))
     }
@@ -32,7 +32,7 @@ const loginUser = async (userData) => {
 
 //Logout user
 const logoutUser = async () => {
-    const response = await axios.delete(API_URL + 'user/logout');
+    const response = await api.delete('user/logout');
     if (response.status !== 200) {
         return response.data;
     }
@@ -41,7 +41,7 @@ const logoutUser = async () => {
 
 const updateUser = async (id) => {
     console.log("test");
-    const response = await axios.post(API_URL + 'user/personal-info', id)
+    const response = await api.post('user/personal-info', id)
     if (response.status !== 400) {
         localStorage.setItem('user', JSON.stringify(response.data.message))
     }
