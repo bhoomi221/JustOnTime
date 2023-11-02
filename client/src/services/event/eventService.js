@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { EventStatus } from '../admin/verifyEventService';
 
-const API_URL = 'https://justontime.onrender.com/api/'
+const API_URL = '/api/'
 
 //Get public events
 export const loadEvents = async () => {

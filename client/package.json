@@ -36,7 +36,6 @@
     "eject": "react-scripts eject",
     "serverstart": "nodemon ../server/app.js"
   },
-  "proxy": "https://justontime.onrender.com/",
   "eslintConfig": {
     "extends": [
       "react-app",

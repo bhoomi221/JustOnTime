@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: ["https://justontime.onrender.com"] }));
+app.use(cors({ credentials: true, origin: ["https://justontime-f6fi.onrender.com", "http://localhost:3000"] }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/uploads',express.static('../uploads'))
