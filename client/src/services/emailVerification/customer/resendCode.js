@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3000/api'
+import {api} from '../../../api_config.js';
 
 //resend code to the user
 const resendCode = async () => {
@@ -8,7 +8,7 @@ const resendCode = async () => {
     const user = {
         email: "youomachi@gmail.com"
     }
-    const response = await axios.post(API_URL + '/customer/resendcode', user);
+    const response = await api.post('/customer/resendcode', user);
     console.log(response.data);
     return response.data
 

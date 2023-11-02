@@ -1,10 +1,9 @@
-import axios from 'axios'
-
-const API_URL = '/api/'
+import axios from 'axios';
+import {api} from '../../api_config.js';
 
 //Load Unverified Events
 const loadEvents = async () => {
-    const response = await axios.get(API_URL + 'admin/getUnverifiedEvents');
+    const response = await api.get('admin/getUnverifiedEvents');
     return response.data;
 }
 
@@ -23,7 +22,7 @@ const verifyEvent = async (eventId) => {
         eventId: eventId,
         eventStatus: EventStatus.ONGOING
     }
-    const response = await axios.post(API_URL + 'admin/updateEventStatus', body);
+    const response = await api.post( 'admin/updateEventStatus', body);
     console.log(response.data)
     return response.data;
 }
@@ -35,7 +34,7 @@ const rejectEvent = async (eventId) => {
         eventId: eventId,
         eventStatus: EventStatus.REJECTED
     }
-    const response = await axios.post(API_URL + 'admin/updateEventStatus', body);
+    const response = await api.post('admin/updateEventStatus', body);
     console.log(response.data)
     return response.data;
 }

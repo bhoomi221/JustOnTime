@@ -1,10 +1,10 @@
 import axios from 'axios'
+import {api} from '../../api_config.js';
 
-const API_URL = '/api/'
 
 //Register user
 const loadOrganizers = async () => {
-    const response = await axios.get(API_URL + 'admin/getUnverifiedOrganizers');
+    const response = await api.get( 'admin/getUnverifiedOrganizers');
     return response.data;
 }
 
@@ -22,7 +22,7 @@ const verifyOrganizer = async (email) => {
         email: email,
         verificationStatus: OrganizerStatus.VERIFIED
     }
-    const response = await axios.post(API_URL + 'admin/updateOrganizerStatus', body);
+    const response = await api.post( 'admin/updateOrganizerStatus', body);
     console.log(response.data)
     return response.data;
 }
@@ -34,7 +34,7 @@ const rejectOrganizer = async (email) => {
         email: email,
         verificationStatus: OrganizerStatus.REJECTED
     }
-    const response = await axios.post(API_URL + 'admin/updateOrganizerStatus', body);
+    const response = await api.post(  'admin/updateOrganizerStatus', body);
     console.log(response.data)
     return response.data;
 }

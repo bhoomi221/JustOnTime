@@ -3,10 +3,10 @@ import {FaUserAlt} from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import InputField from "../../components/forms/input/InputField";
 import logo from "../../logo_cropped.png";
-import axios from 'axios'
+import axios from 'axios'; 
+import {api} from '../../api_config.js';
 
 function SendResetLink() {
-    const API_URL = '/api/';
     const [formError, setFormError] = useState(false);
     const [userEmail, setUserEmail] = useState("");
     const [success, setSuccess] = useState(false);
@@ -25,7 +25,7 @@ function SendResetLink() {
         } else {
             try {
                 setFormError("");
-                const response = await axios.post(API_URL + 'user/send-reset-link',  {"email": userEmail, "field": changed});
+                const response = await api.post('user/send-reset-link',  {"email": userEmail, "field": changed});
                 console.log(response.data);
                 setSuccess(response.data);
             } catch (error) {

@@ -5,10 +5,10 @@ import InputField from "../../../../components/forms/input/InputField";
 import {useDispatch} from 'react-redux';
 import logo from "../../../../logo_cropped.png";
 import {logoutUser, reset } from "../../../../services/auth/authSlice"
-import axios from 'axios'
+import axios from 'axios'; 
+import {api} from '../../../../api_config.js';
 
 function ResetEmail() {
-    const API_URL = '/api/';
     const [formError, setFormError] = useState(false);
     const [email, setEmail] = useState(false);
     const [email2, setEmail2] = useState(false);
@@ -24,7 +24,7 @@ function ResetEmail() {
     }
 
     const checkToken = async () => {
-        const valid = await axios.post(API_URL + 'user/checkToken',  {"token": token});
+        const valid = await api.post('user/checkToken',  {"token": token});
         return valid;
     }
     useEffect(() => {
@@ -43,14 +43,14 @@ function ResetEmail() {
         } else {
             try {
                 setFormError("");
-                const response = await axios.post(API_URL + 'user/personal-info', {"id": id, "update": { "userInfo.email" : email }});
+                const response = await api.post('user/personal-info', {"id": id, "update": { "userInfo.email" : email }});
                 console.log(response)
                 logout()
             } catch (error) {
                 setFormError(error.response.data.message);
             } 
             try {
-                const response = await axios.post(API_URL + 'user/send-email', {"id": id, "message": "Email successfully changed!", subject: "JUST ON TIME: Email changed" });
+                const response = await api.post('user/send-email', {"id": id, "message": "Email successfully changed!", subject: "JUST ON TIME: Email changed" });
                 navigate('/reset-successful/email')
             } catch (error) {
                 setFormError(error.response.data.message);
