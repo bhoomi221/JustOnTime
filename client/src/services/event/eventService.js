@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { EventStatus } from '../admin/verifyEventService';
-import {api} from '../../api_config';
+import {api} from '../../api_config.js';
 
 // Get public events
 export const loadEvents = async () => {
