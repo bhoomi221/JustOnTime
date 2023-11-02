@@ -34,7 +34,7 @@ const sessionParser = session({
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
-    cookie : {secure: true, httpOnly: false}
+    cookie : {secure: true, httpOnly: false, sameSite: 'none'}
 })
 app.set('trust proxy', 1)
 app.use(sessionParser)
