@@ -1,26 +1,46 @@
 import axios from 'axios'
 import { EventStatus } from '../admin/verifyEventService';
 
-const API_URL = '/api/'
+const API_URL = "https://justontime.onrender.com/api/"
+const api = axios.create({
+    baseURL: API_URL,
+    withCredentials: true // Ensure credentials are sent
+  });
+  
+  api.interceptors.request.use((config) => {
+    config.headers['Content-Type'] = 'application/json';
+    return config;
+  });
 
-//Get public events
+
+// Get public events
 export const loadEvents = async () => {
-    const response = await axios.get(API_URL + 'event');
-    if (response.data) {
-        const data =  response.data.events.map((event) => {
-            return {
-                id: event.id,
-                title: event.name,
-                date: event.date,
-                time: event.time,
-                location: event.location,
-                bidHistory: event.bidHistory,
-                auctionEnd: event.auctionEnd
-            }
-        });
-        return data;
+    try {
+        const response = await api.get('event');
+        
+        if (response.data && response.data.events) {
+            const data = response.data.events.map((event) => {
+                return {
+                    id: event.id,
+                    title: event.name,
+                    date: event.date,
+                    time: event.time,
+                    location: event.location,
+                    bidHistory: event.bidHistory,
+                    auctionEnd: event.auctionEnd
+                };
+            });
+            return data;
+        } else {
+            console.error('Invalid response or response format:', response.data);
+            return null; // or handle this scenario according to your needs
+        }
+    } catch (error) {
+        console.error('Error fetching events:', error);
+        return null; // or handle this scenario according to your needs
     }
-}
+};
+
 
 export const loadOrganizerEvents = async (userID) => {
     const response = await axios.get('/api/event/organizerEvents?id=' + userID);
