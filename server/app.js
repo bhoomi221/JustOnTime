@@ -15,7 +15,7 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: ["https://justontime-f6fi.onrender.com"], exposedHeaders: ["set-cookie"]  }));
+app.use(cors({ credentials: true, origin: ["https://justontime.onrender.com"] }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/uploads',express.static('../uploads'))
@@ -33,8 +33,10 @@ const sessionParser = session({
     secret: process.env.SESSION_SECRET_KEY,
     store: sessionStore,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie : {secure: true, httpOnly: false}
 })
+app.set('trust proxy', 1)
 app.use(sessionParser)
 
 // configure passport
