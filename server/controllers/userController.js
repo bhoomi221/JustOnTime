@@ -38,6 +38,7 @@ const loginUser = async (req, res, next) => {
     if (!user) return clientError(res, "Invalid credentials.");
     else req.logIn(user, function(err) {
         if (err) { return next(err); }
+        console.log(res.getHeaders());
         return successWithData(res, user, false);
     });
   })(req, res, next);

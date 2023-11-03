@@ -32,7 +32,7 @@ export const loadEvents = async () => {
 
 
 export const loadOrganizerEvents = async (userID) => {
-    const response = await api.get('/api/event/organizerEvents?id=' + userID);
+    const response = await api.get('/event/organizerEvents?id=' + userID);
     if (response.data) {
         const data =  response.data.events.map((event) => {
             return {
